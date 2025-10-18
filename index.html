@@ -1,308 +1,189 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rock — [Tên nhóm bạn]</title>
-  <meta name="description" content="Slide trình chiếu về nhạc Rock — mở màn với rèm đỏ, 1 click để mở và chuyển slide như PowerPoint." />
-
-  <!-- =====================
-       QUICK NOTES
-       - Thay các URL ảnh (PLACEHOLDER) vào thuộc tính src của <img class="art">
-       - Đổi title trong <title> và phần giới thiệu nhóm
-       - Mở file bằng trình duyệt (index.html). Hoặc đẩy lên GitHub Pages để trình chiếu online.
-       - Hành vi: Click đầu tiên mở rèm. Các click sau chuyển slide tiếp theo (giống PPT). Mũi tên ← → hoặc phím Space cũng hoạt động.
-       ===================== -->
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock — Nhóm trình bày</title>
   <style>
-    :root{
-      --bg:#0b0b0b; --accent:#c62828; --text:#efefef; --muted:#bdbdbd;
-      --slide-w:1100px; --slide-h:618px; /* tỉ lệ 16:9 */
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f7f7f7;
+      overflow: hidden;
+      color: #222;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,#050505 0%, #0f0f0f 100%);font-family:Inter, system-ui, Arial; color:var(--text)}
 
-    /* App shell */
-    .stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    /* --- Rèm đỏ --- */
+    .curtain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      z-index: 1000;
+      background: #000;
+      overflow: hidden;
+    }
 
-    /* Slide frame */
-    .frame{width:var(--slide-w);height:var(--slide-h);background:#111;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.7);overflow:hidden;position:relative;transform-origin:center center;transition:transform 900ms cubic-bezier(.2,.9,.3,1)}
+    .curtain-part {
+      width: 50%;
+      height: 100%;
+      background: url('file_00000000986461f6baa9704e9f025170') center/cover no-repeat;
+      transition: transform 2s ease-in-out;
+    }
 
-    /* Slides container */
-    .slides{width:100%;height:100%;position:relative}
-    .slide{position:absolute;inset:0;padding:40px;display:flex;flex-direction:column;gap:18px;align-items:flex-start;justify-content:flex-start;opacity:0;pointer-events:none;transform:translateY(18px) scale(.99);transition:all 480ms cubic-bezier(.2,.9,.3,1)}
-    .slide.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+    .curtain.open .left {transform: translateX(-100%);}
+    .curtain.open .right {transform: translateX(100%);}
 
-    /* Header */
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo{width:64px;height:64px;border-radius:6px;background:linear-gradient(135deg,#222,#111);display:flex;align-items:center;justify-content:center;font-weight:700}
-    h1{margin:0;font-size:26px}
-    p.lead{margin:0;color:var(--muted)}
+    /* --- Slides --- */
+    .slides {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease;
+    }
 
-    /* Slide content styles */
-    .cols{display:flex;gap:18px;width:100%}
-    .left{flex:2}
-    .right{flex:1;display:flex;flex-direction:column;gap:12px}
-    ul{margin:0;padding-left:18px;color:var(--muted)}
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+    }
 
-    /* Artist card */
-    .artist{display:flex;gap:12px;align-items:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:8px;border-radius:8px}
-    .artist img{width:64px;height:64px;object-fit:cover;border-radius:6px}
-    .artist .meta{display:flex;flex-direction:column}
-    .artist .meta .name{font-weight:600}
-    .artist .meta .info{font-size:13px;color:var(--muted)}
+    .slide.active {display: flex;}
 
-    /* Curtain */
-    .curtain{position:absolute;inset:0;display:flex;z-index:40;pointer-events:auto}
-    .panel{flex:1;background:linear-gradient(180deg,#8b0000,#5a0000);display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;transition:transform 900ms cubic-bezier(.2,.9,.3,1)}
-    .panel.left{transform-origin:left}
-    .panel.right{transform-origin:right}
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
 
-    /* Curtain hidden state */
-    .curtain.open .panel.left{transform:translateX(-120%)}
-    .curtain.open .panel.right{transform:translateX(120%)}
+    p {font-size: 1.3rem; width: 80%; max-width: 900px;}
 
-    /* Center spotlight (zoom target) */
-    .spot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:calc(var(--slide-w) + 120px);height:calc(var(--slide-h) + 120px);border-radius:14px;box-shadow:0 40px 120px rgba(0,0,0,.7);z-index:39;pointer-events:none;transition:opacity 600ms ease}
-    .spot.hidden{opacity:0}
+    /* --- Giới thiệu nhóm --- */
+    .contributors {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
 
-    /* Small controls hint */
-    .hint{position:absolute;left:20px;bottom:20px;color:var(--muted);font-size:13px}
+    .role {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 200px;
+    }
 
-    /* Navigation arrows (invisible but accessible) */
-    .nav{position:absolute;inset:0;pointer-events:none}
-    .nav button{pointer-events:auto;position:absolute;margin:auto;border:0;background:transparent;color:rgba(255,255,255,0.9);font-size:26px;padding:12px;border-radius:50%;cursor:pointer}
-    .nav .prev{left:8px;top:50%;transform:translateY(-50%)}
-    .nav .next{right:8px;top:50%;transform:translateY(-50%)}
+    .role img {
+      width: 80px;
+      margin-bottom: 10px;
+    }
 
-    /* slide specific styling (visual variety) */
-    .s-1{background:linear-gradient(90deg,#111 0%, #1a1a1a 100%)}
-    .s-2{background:linear-gradient(90deg,#0b1020,#120b0b)}
-    .s-3{background:linear-gradient(90deg,#191919,#0b0b14)}
-    .s-4{background:linear-gradient(90deg,#0b0b0b,#0b0710)}
-    .s-5{background:linear-gradient(90deg,#101010,#0a0a05)}
-    .s-6{background:linear-gradient(90deg,#0b0b0b,#0c0715)}
-    .s-7{background:linear-gradient(90deg,#0b0b0b,#121212)}
+    .role h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
 
-    /* responsive */
-    @media (max-width:1200px){:root{--slide-w:900px;--slide-h:506px}}
-    @media (max-width:900px){:root{--slide-w:680px;--slide-h:382px}}
-    @media (max-width:560px){.frame{width:100%;height:100%;border-radius:0} .spot{display:none} .curtain .panel{font-size:20px}}
+    .role p {
+      font-size: 1rem;
+      color: #333;
+      min-height: 40px;
+    }
+
+    /* Hiệu ứng zoom nhẹ khi rèm mở */
+    .zoom-enter {
+      transform: scale(1.2);
+      transition: transform 2s ease-in-out;
+    }
+    .zoom-enter.done {transform: scale(1);}
   </style>
 </head>
 <body>
+  <!-- Rèm đỏ -->
+  <div class="curtain" id="curtain">
+    <div class="curtain-part left"></div>
+    <div class="curtain-part right"></div>
+  </div>
 
-<div class="stage" id="stage">
-  <div class="frame" id="frame" aria-hidden="false">
-    <div class="slides" id="slides">
-      <!-- Slide 1: Giới thiệu -->
-      <section class="slide s-1 active" data-index="0">
-        <div class="brand">
-          <div class="logo">RK</div>
-          <div>
-            <h1>Rock — [Tên nhóm bạn]</h1>
-            <p class="lead">Giới thiệu ngắn: [Tên thành viên — vai trò]. Thể loại: Rock.</p>
-          </div>
+  <div class="slides zoom-enter" id="slides">
+    <!-- Slide 1: Tiêu đề -->
+    <div class="slide active" style="background: url('file_00000000447c6243b5d5c531733e25f2') center/cover no-repeat; color: white;">
+      <h1>ROCK MUSIC</h1>
+      <p>Nhóm trình bày: [Tên nhóm của bạn]</p>
+    </div>
+
+    <!-- Slide 2: Giới thiệu nhóm -->
+    <div class="slide" style="background: url('file_00000000bb30623098ee0ef229f13db1') center/cover no-repeat;">
+      <h1>THÀNH VIÊN NHÓM</h1>
+      <div class="contributors">
+        <div class="role">
+          <img src="https://img.icons8.com/ios/100/000000/source-code.png" alt="Web Developer">
+          <h3>Web Developer</h3>
+          <p>Nguyên Bảo</p>
+          <!-- Ghi công việc ở đây -->
         </div>
-        <div style="flex:1;display:flex;align-items:flex-end;width:100%">
-          <p style="color:var(--muted);font-size:15px">Thời gian thuyết trình: tối đa 10–11 phút. Lưu ý: những phần chi tiết sẽ trình bày miệng.</p>
+        <div class="role">
+          <img src="https://img.icons8.com/ios/100/000000/script.png" alt="Scriptwriter">
+          <h3>Scriptwriters</h3>
+          <p>Quỳnh Trang, Cát Khánh, Như Ý, Anh Đức</p>
+          <!-- Ghi công việc ở đây -->
         </div>
-      </section>
-
-      <!-- Slide 2: Nguồn gốc & Lịch sử (2p) -->
-      <section class="slide s-2" data-index="1">
-        <h2>Nguồn gốc & Lịch sử</h2>
-        <div class="cols">
-          <div class="left">
-            <ul>
-              <li>Xuất hiện: cuối thập niên 1940–1950 ở Anh & Mỹ (tiền thân: Rock 'n' Roll, Blues, Country).</li>
-              <li>Social: bối cảnh công nghiệp hóa, thanh niên phản kháng, văn hóa trẻ nổi loạn.</li>
-              <li>Người tiên phong: Elvis Presley (rock 'n' roll), Chuck Berry, Little Richard; các ban đầu kỳ: The Beatles, The Rolling Stones (thập kỷ sau).</li>
-            </ul>
-          </div>
-          <div class="right">
-            <!-- Replace src with artist/history image -->
-            <img src="https://placehold.co/400x240?text=History+Image" alt="history" style="width:100%;border-radius:8px;object-fit:cover">
-            <p class="hint">2 phút</p>
-          </div>
+        <div class="role">
+          <img src="https://img.icons8.com/ios/100/000000/presentation.png" alt="Presenter">
+          <h3>Presenters</h3>
+          <p>Quang Vũ, Hải Đăng</p>
+          <!-- Ghi công việc ở đây -->
         </div>
-      </section>
-
-      <!-- Slide 3: Đặc điểm chính (2p) -->
-      <section class="slide s-3" data-index="2">
-        <h2>Đặc điểm chính</h2>
-        <div class="cols">
-          <div class="left">
-            <ul>
-              <li>Nhạc cụ điển hình: Electric guitar (lead & rhythm), bass, drums, đôi khi piano hoặc keyboard.</li>
-              <li>Âm thanh: riff guitar mạnh, distortion, nhịp đánh dồn dập; vocal đầy năng lượng.</li>
-              <li>Chủ đề lời: tình yêu, phản kháng, tự do, đời sống xã hội.</li>
-            </ul>
-          </div>
-          <div class="right">
-            <img src="https://placehold.co/400x240?text=Guitar+%26+Drums" alt="instruments" style="width:100%;border-radius:8px;object-fit:cover">
-            <p class="hint">2 phút</p>
-          </div>
+        <div class="role">
+          <img src="https://img.icons8.com/ios/100/000000/electric-guitar.png" alt="Performer">
+          <h3>Performer</h3>
+          <p>Hải Đăng</p>
+          <!-- Ghi công việc ở đây -->
         </div>
-      </section>
-
-      <!-- Slide 4: Nghệ sĩ & Bài hát (2p) -->
-      <section class="slide s-4" data-index="3">
-        <h2>Nghệ sĩ & Bài hát nổi bật</h2>
-        <div style="display:flex;gap:12px;flex-direction:column;width:100%">
-          <!-- Artist items: replace images and names -->
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+1" alt="artist 1">
-            <div class="meta"><div class="name">The Rolling Stones</div><div class="info">(Anh) — Ví dụ bài: "Satisfaction"</div></div>
-          </div>
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+2" alt="artist 2">
-            <div class="meta"><div class="name">Led Zeppelin</div><div class="info">(Anh) — Ví dụ bài: "Stairway to Heaven"</div></div>
-          </div>
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+3" alt="artist 3">
-            <div class="meta"><div class="name">Linkin Park</div><div class="info">(Mỹ) — Ví dụ bài: "In the End"</div></div>
-          </div>
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+4" alt="artist 4">
-            <div class="meta"><div class="name">Nghệ sĩ VN (vd: Bức Tường)</div><div class="info">Ví dụ bài: "Tâm hồn của đá"</div></div>
-          </div>
-          <p class="hint">2 phút — show 5 bài đại diện bằng danh sách khi thuyết trình</p>
-        </div>
-      </section>
-
-      <!-- Slide 5: Tầm ảnh hưởng & Modern trends (1.5p) -->
-      <section class="slide s-5" data-index="4">
-        <h2>Tầm ảnh hưởng & Xu hướng hiện nay</h2>
-        <div class="cols">
-          <div class="left">
-            <ul>
-              <li>Ảnh hưởng: thời trang (áo da, boots), hành vi (văn hóa chống đối), ngôn ngữ âm nhạc trên mạng.</li>
-              <li>Modern trends: indie rock, alternative blends, electronic production (rock + điện tử), livestream & festival.</li>
-            </ul>
-          </div>
-          <div class="right">
-            <img src="https://placehold.co/400x240?text=Fashion+%26+Festivals" alt="impact" style="width:100%;border-radius:8px;object-fit:cover">
-            <p class="hint">1.5 phút</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 6: Biểu diễn (mini) -->
-      <section class="slide s-6" data-index="5">
-        <h2>Chuyên mục: Biểu diễn nhỏ</h2>
-        <p style="color:var(--muted)">(Chèn đoạn audio demo ~15–30s hoặc video ngắn — khi trình chiếu, click để play)</p>
-        <div style="display:flex;gap:12px;margin-top:8px;align-items:center">
-          <button id="playDemo">▶️ Play demo (ví dụ: riff ngắn)</button>
-          <audio id="demoAudio" src="" preload="none"></audio>
-        </div>
-      </section>
-
-      <!-- Slide 7: Ending -->
-      <section class="slide s-7" data-index="6">
-        <h2>Thank you for listening</h2>
-        <p style="color:var(--muted)">Kết thúc — thông tin liên hệ / tên thành viên / cảm ơn giáo viên và lớp.</p>
-      </section>
-
+      </div>
     </div>
   </div>
 
-  <!-- Curtain overlay (mở bằng 1 click) -->
-  <div class="curtain" id="curtain" role="button" aria-label="Mở màn" title="Click để mở màn">
-    <div class="panel left">Nhóm Rock</div>
-    <div class="panel right">Click để bắt đầu</div>
-  </div>
+  <script>
+    const curtain = document.getElementById('curtain');
+    const slides = document.querySelectorAll('.slide');
+    const slidesContainer = document.getElementById('slides');
+    let currentSlide = 0;
+    let curtainOpened = false;
 
-  <div class="spot" id="spot"></div>
-
-  <!-- Navigation (invisible on mobile) -->
-  <div class="nav">
-    <button class="prev" id="prev" aria-label="Previous">⟨</button>
-    <button class="next" id="next" aria-label="Next">⟩</button>
-  </div>
-
-  <div class="hint">Click anywhere để chuyển slide • ← → • Space</div>
-</div>
-
-<script>
-  // --- CORE BEHAVIOR
-  const curtain = document.getElementById('curtain');
-  const frame = document.getElementById('frame');
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const stage = document.getElementById('stage');
-  const spot = document.getElementById('spot');
-  let opened = false;
-  let index = 0;
-  const total = slides.length;
-
-  function showIndex(i, transition='slide'){
-    slides.forEach(s=>s.classList.remove('active'));
-    const next = slides[i];
-    if(!next) return;
-    next.classList.add('active');
-
-    // small animation: animate an object inside if needed
-    next.animate([{transform:'translateY(8px)'},{transform:'translateY(0)'}],{duration:420,easing:'cubic-bezier(.2,.9,.3,1)'});
-  }
-
-  // advance slide
-  function nextSlide(){
-    if(index < total -1){ index++; showIndex(index); } else { /* loop or stay */ }
-  }
-  function prevSlide(){ if(index>0){ index--; showIndex(index); } }
-
-  // Curtain open (first click)
-  curtain.addEventListener('click',openCurtain,{once:true});
-  function openCurtain(e){
-    curtain.classList.add('open');
-    // slight delay then zoom frame into view (scale up)
-    setTimeout(()=>{
-      frame.style.transform = 'scale(1.06)';
-      // hide spot and remove curtain from pointer events after animation
-      spot.classList.add('hidden');
-      setTimeout(()=>{ curtain.style.display='none'; frame.style.transform='scale(1)'; opened=true; },900);
-    },200);
-  }
-
-  // universal click to advance (but prevent clicks on links or buttons)
-  document.addEventListener('click', (ev)=>{
-    if(!opened) return; // first click handled by curtain
-    const t = ev.target;
-    if(t.tagName==='A' || t.tagName==='BUTTON' || t.closest('button')) return; // don't steal button actions
-    nextSlide();
-  });
-
-  // nav buttons
-  document.getElementById('next').addEventListener('click',(e)=>{ e.stopPropagation(); nextSlide(); });
-  document.getElementById('prev').addEventListener('click',(e)=>{ e.stopPropagation(); prevSlide(); });
-
-  // keyboard
-  document.addEventListener('keydown',(e)=>{
-    if(!opened && (e.key===' ' || e.key==='Enter')){ openCurtain(); }
-    if(!opened) return;
-    if(e.key==='ArrowRight' || e.key===' '){ nextSlide(); }
-    if(e.key==='ArrowLeft'){ prevSlide(); }
-  });
-
-  // demo audio play (empty src — replace with url or file)
-  document.getElementById('playDemo').addEventListener('click', async (ev)=>{
-    ev.stopPropagation();
-    const audio = document.getElementById('demoAudio');
-    if(!audio.src){ alert('Chèn URL audio vào thuộc tính src của #demoAudio trong mã nguồn để bật demo.'); return; }
-    if(audio.paused) { await audio.play(); ev.target.textContent='⏸ Pause'; } else { audio.pause(); ev.target.textContent='▶️ Play demo'; }
-  });
-
-  // initial
-  showIndex(0);
-
-  // Helpful: allow direct linking to a slide via ?s=idx
-  const url = new URL(location.href);
-  const s = url.searchParams.get('s');
-  if(s){ const si = parseInt(s,10); if(!isNaN(si) && si>=0 && si<total){ index=si; showIndex(index); curtain.style.display='none'; opened=true; }}
-
-  // Accessibility: focus controls
-  document.getElementById('next').style.opacity = 0.0001; // nearly invisible but usable (remove if you want visible arrows)
-  document.getElementById('prev').style.opacity = 0.0001;
-</script>
+    window.addEventListener('click', () => {
+      if (!curtainOpened) {
+        curtain.classList.add('open');
+        slidesContainer.classList.add('done');
+        curtainOpened = true;
+        setTimeout(() => {
+          curtain.style.display = 'none';
+          slidesContainer.classList.add('done');
+        }, 2000);
+      } else {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+    });
+  </script>
 </body>
 </html>
