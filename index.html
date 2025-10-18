@@ -1,112 +1,110 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rock — [Tên nhóm bạn]</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rock Music — Group 3</title>
   <style>
-    :root{
-      --bg:#f7f7f7; --text:#222; --muted:#666;
-      --slide-w:1100px; --slide-h:618px;
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{
+      width:100%;height:100%;
+      font-family:"Poppins",sans-serif;
+      background:#f7f7f7;color:#222;
+      overflow:hidden;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);font-family:Inter, system-ui, Arial;color:var(--text)}
 
-    /* stage + frame (keeps your original layout safe) */
-    .stage{width:100%;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    /* --- Curtain --- */
+    .curtain{
+      position:fixed;inset:0;display:flex;
+      z-index:999;background:#000;
+      pointer-events:auto;
+    }
+    .curtain-part{
+      flex:1;
+      background:url("https://i.postimg.cc/JhQGf2hp/red-curtain.jpg") center/cover no-repeat;
+      transition:transform 1.6s cubic-bezier(.22,.9,.26,1);
+    }
+    .curtain.open .left{transform:translateX(-100%);}
+    .curtain.open .right{transform:translateX(100%);}
 
-    .frame{width:var(--slide-w);height:var(--slide-h);background:#fff;border-radius:12px;box-shadow:0 20px 40px rgba(0,0,0,.12);overflow:hidden;position:relative;transform-origin:center center;transition:transform 700ms cubic-bezier(.2,.9,.3,1)}
+    /* --- Slides --- */
+    .slides{position:relative;width:100vw;height:100vh;}
+    .slide{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      display:none;justify-content:center;align-items:center;
+      flex-direction:column;text-align:center;
+      background-size:cover;background-position:center;
+      opacity:0;transition:opacity 1s ease;
+    }
+    .slide.active{display:flex;opacity:1;}
 
-    .slides{width:100%;height:100%;position:relative}
-    .slide{position:absolute;inset:0;padding:28px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;justify-content:flex-start;opacity:0;pointer-events:none;transform:translateY(16px) scale(.995);transition:all 420ms ease}
-    .slide.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+    h1{font-size:4rem;text-transform:uppercase;letter-spacing:3px;}
+    p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 
-    h1{margin:0;font-size:28px}
-    p.lead{margin:0;color:var(--muted)}
+    /* --- Members --- */
+    .contributors{
+      display:flex;justify-content:center;align-items:center;
+      flex-wrap:wrap;gap:60px;margin-top:40px;
+    }
+    .role{
+      display:flex;flex-direction:column;align-items:center;width:220px;
+    }
+    .role img{
+      width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:12px;
+    }
+    .role h3{font-size:1.3rem;margin-bottom:6px;}
+    .role p{font-size:1.1rem;}
 
-    .cols{display:flex;gap:14px;width:100%}
-    .left{flex:2}
-    .right{flex:1;display:flex;flex-direction:column;gap:10px}
-    ul{margin:0;padding-left:18px;color:var(--muted)}
-
-    /* curtain */
-    .curtain{position:fixed;inset:0;display:flex;z-index:1200;pointer-events:auto;background:transparent}
-    .panel{flex:1;background-size:cover;background-position:center;transition:transform 1.2s cubic-bezier(.22,.9,.26,1)}
-    .panel.left{transform-origin:left}
-    .panel.right{transform-origin:right}
-    .curtain.open .panel.left{transform:translateX(-105%)}
-    .curtain.open .panel.right{transform:translateX(105%)}
-
-    /* zoom spotlight */
-    .frame.zoom { transform: scale(1.08); transition:transform 900ms cubic-bezier(.2,.9,.3,1); }
-    @media (max-width:900px){:root{--slide-w:760px;--slide-h:426px}}
-    @media (max-width:560px){.frame{width:100%;height:100%;border-radius:0}}
+    /* --- Zoom when curtain opens --- */
+    .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
+    .zoom-enter.done{transform:scale(1);}
   </style>
 </head>
 <body>
+  <!-- Curtain -->
+  <div class="curtain" id="curtain">
+    <div class="curtain-part left"></div>
+    <div class="curtain-part right"></div>
+  </div>
 
-<div class="stage" id="stage">
-  <div class="frame" id="frame" aria-hidden="false">
-    <div class="slides" id="slides">
-      <!-- === SLIDE 1 (TITLE) === -->
-      <section class="slide active" data-index="0" style="background:#111;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column">
-        <!-- you mentioned you want this to look like your image #2 -->
-        <h1 style="font-size:48px;letter-spacing:2px;">ROCK MUSIC</h1>
-        <p class="lead" style="color:#ddd;font-weight:600;margin-top:8px">GROUP 3 — MUSIC GENRE</p>
-      </section>
+  <!-- Slides -->
+  <div class="slides zoom-enter" id="slides">
+    <!-- Slide 1: ROCK MUSIC -->
+    <section class="slide s-0 active" data-index="0" style="background:url('https://i.postimg.cc/fyZWZ7wW/rock-bg.jpg') center/cover no-repeat;color:white;">
+      <h1>ROCK MUSIC</h1>
+      <p>GROUP 3 — MUSIC GENRE PRESENTATION</p>
+    </section>
 
-      <!-- === SLIDE 2 (INTERMEDIATE, like image 2) === -->
-      <section class="slide" data-index="1" style="background:#f2f2f2;display:flex;align-items:center;justify-content:center;flex-direction:column">
-        <!-- Put an image background or big styled title similar to image #2 -->
-        <div style="max-width:920px;width:100%;text-align:center;padding:20px;">
-          <h1 style="font-size:42px;text-transform:uppercase;">ROCK MUSIC</h1>
-          <p style="color:var(--muted);margin-top:6px">Một tóm tắt mạnh mẽ — âm nhạc, phong cách, lịch sử</p>
+    <!-- Slide 2: THÀNH VIÊN NHÓM -->
+    <section class="slide s-1" data-index="1" style="background-color:#fafafa;">
+      <h1>THÀNH VIÊN NHÓM</h1>
+      <div class="contributors">
+        <div class="role">
+          <img src="https://i.postimg.cc/dVTNwYJ1/web-developer.png" alt="Web Developer">
+          <h3>Web Developer</h3>
+          <p>Nguyên Bảo</p>
         </div>
-      </section>
-
-      <!-- === SLIDE 3 (TEAM INTRO — like image 3) === -->
-      <section class="slide" data-index="2" style="background:#fff; padding:30px;">
-        <h1 style="font-size:34px;text-align:center;width:100%;">THÀNH VIÊN NHÓM</h1>
-
-        <div style="display:flex;gap:20px;justify-content:center;margin-top:18px;flex-wrap:wrap;">
-          <!-- ====== Web Developer ====== -->
-          <div style="width:220px;text-align:center;">
-            <!-- IMPORTANT: replace the src below with the DIRECT image URL from postimg (see note) -->
-            <img src="https://postimg.cc/fVDff1tn" alt="Web Developer" style="width:100px;height:100px;object-fit:cover;border-radius:10px;">
-            <h3 style="margin-top:8px;">Web Developer</h3>
-            <p style="color:var(--muted);min-height:44px;">Nguyên Bảo</p>
-            <!-- <-- Dòng để bạn ghi công việc: chỉnh nội dung dưới đây --> 
-            <!-- Example: <p class="task">Task: Code front-end, deploy GitHub Pages</p> -->
-          </div>
-
-          <!-- ====== Informant ====== -->
-          <div style="width:220px;text-align:center;">
-            <img src="https://postimg.cc/nj4L2S9w" alt="Informant" style="width:100px;height:100px;object-fit:cover;border-radius:10px;">
-            <h3 style="margin-top:8px;">Informant</h3>
-            <p style="color:var(--muted);min-height:44px;">Quỳnh Trang</p>
-            <!-- Ghi công việc ở đây -->
-          </div>
-
-          <!-- ====== Scriptwriter ====== -->
-          <div style="width:220px;text-align:center;">
-            <img src="https://postimg.cc/1nh07zJ0" alt="Scriptwriter" style="width:100px;height:100px;object-fit:cover;border-radius:10px;">
-            <h3 style="margin-top:8px;">Scriptwriter</h3>
-            <p style="color:var(--muted);min-height:44px;">Cát Khánh, Như Ý, Anh Đức</p>
-            <!-- Ghi công việc ở đây -->
-          </div>
-
-          <!-- ====== Performer ====== -->
-          <div style="width:220px;text-align:center;">
-            <img src="https://postimg.cc/KkDT9D1d" alt="Performer" style="width:100px;height:100px;object-fit:cover;border-radius:10px;">
-            <h3 style="margin-top:8px;">Performer</h3>
-            <p style="color:var(--muted);min-height:44px;">Hải Đăng</p>
-            <!-- Ghi công việc ở đây -->
-          </div>
+        <div class="role">
+          <img src="https://i.postimg.cc/NMVrgWsY/informant.png" alt="Informant">
+          <h3>Informant</h3>
+          <p>Quỳnh Trang</p>
         </div>
-      </section>
-            <!-- Slide 2: Nguồn gốc & Lịch sử (2p) -->
-      <section class="slide s-2" data-index="1">
+        <div class="role">
+          <img src="https://i.postimg.cc/MTXsTMBL/scriptwriter.png" alt="Scriptwriter">
+          <h3>Scriptwriter</h3>
+          <p>Cát Khánh, Như Ý, Anh Đức</p>
+        </div>
+        <div class="role">
+          <img src="https://i.postimg.cc/85qbzyNP/Performer.webp" alt="Performer">
+          <h3>Performer</h3>
+          <p>Hải Đăng</p>
+        </div>
+      </div>
+    </section>
+
+      <!-- Slide 3: Nguồn gốc & Lịch sử (2p) -->
+      <section class="slide s-2" data-index="2">
         <h2>Nguồn gốc & Lịch sử</h2>
         <div class="cols">
           <div class="left">
@@ -124,8 +122,8 @@
         </div>
       </section>
 
-      <!-- Slide 3: Đặc điểm chính (2p) -->
-      <section class="slide s-3" data-index="2">
+      <!-- Slide 4: Đặc điểm chính (2p) -->
+      <section class="slide s-3" data-index="3">
         <h2>Đặc điểm chính</h2>
         <div class="cols">
           <div class="left">
@@ -142,8 +140,8 @@
         </div>
       </section>
 
-      <!-- Slide 4: Nghệ sĩ & Bài hát (2p) -->
-      <section class="slide s-4" data-index="3">
+      <!-- Slide 5: Nghệ sĩ & Bài hát (2p) -->
+      <section class="slide s-4" data-index="4">
         <h2>Nghệ sĩ & Bài hát nổi bật</h2>
         <div style="display:flex;gap:12px;flex-direction:column;width:100%">
           <!-- Artist items: replace images and names -->
@@ -167,8 +165,8 @@
         </div>
       </section>
 
-      <!-- Slide 5: Tầm ảnh hưởng & Modern trends (1.5p) -->
-      <section class="slide s-5" data-index="4">
+      <!-- Slide 6: Tầm ảnh hưởng & Modern trends (1.5p) -->
+      <section class="slide s-5" data-index="5">
         <h2>Tầm ảnh hưởng & Xu hướng hiện nay</h2>
         <div class="cols">
           <div class="left">
@@ -184,8 +182,8 @@
         </div>
       </section>
 
-      <!-- Slide 6: Biểu diễn (mini) -->
-      <section class="slide s-6" data-index="5">
+      <!-- Slide 7: Biểu diễn (mini) -->
+      <section class="slide s-6" data-index="6">
         <h2>Chuyên mục: Biểu diễn nhỏ</h2>
         <p style="color:var(--muted)">(Chèn đoạn audio demo ~15–30s hoặc video ngắn — khi trình chiếu, click để play)</p>
         <div style="display:flex;gap:12px;margin-top:8px;align-items:center">
@@ -194,111 +192,52 @@
         </div>
       </section>
 
-      <!-- Slide 7: Ending -->
-      <section class="slide s-7" data-index="6">
+      <!-- Slide 8: Ending -->
+      <section class="slide s-7" data-index="7">
         <h2>Thank you for listening</h2>
         <p style="color:var(--muted)">Kết thúc — thông tin liên hệ / tên thành viên / cảm ơn giáo viên và lớp.</p>
       </section>
 
     </div>
   </div>
-
-  <!-- Curtain overlay (mở bằng 1 click) -->
-  <div class="curtain" id="curtain" role="button" aria-label="Mở màn" title="Click để mở màn">
-    <div class="panel left">Nhóm Rock</div>
-    <div class="panel right">Click để bắt đầu</div>
   </div>
 
-  <div class="spot" id="spot"></div>
+  <script>
+    const curtain = document.getElementById("curtain");
+    const slides = document.querySelectorAll(".slide");
+    const slidesContainer = document.getElementById("slides");
+    let opened = false;
+    let current = 0;
 
-  <!-- Navigation (invisible on mobile) -->
-  <div class="nav">
-    <button class="prev" id="prev" aria-label="Previous">⟨</button>
-    <button class="next" id="next" aria-label="Next">⟩</button>
-  </div>
+    // Mở rèm khi click lần đầu
+    window.addEventListener("click", () => {
+      if (!opened) {
+        curtain.classList.add("open");
+        slidesContainer.classList.add("done");
+        setTimeout(() => { curtain.style.display = "none"; }, 1600);
+        opened = true;
+      } else {
+        // Hiệu ứng fade nhẹ khi chuyển slide
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+      }
+    });
 
-  <div class="hint">Click anywhere để chuyển slide • ← → • Space</div>
-</div>
-
-<script>
-  // --- CORE BEHAVIOR
-  const curtain = document.getElementById('curtain');
-  const frame = document.getElementById('frame');
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const stage = document.getElementById('stage');
-  const spot = document.getElementById('spot');
-  let opened = false;
-  let index = 0;
-  const total = slides.length;
-
-  function showIndex(i, transition='slide'){
-    slides.forEach(s=>s.classList.remove('active'));
-    const next = slides[i];
-    if(!next) return;
-    next.classList.add('active');
-
-    // small animation: animate an object inside if needed
-    next.animate([{transform:'translateY(8px)'},{transform:'translateY(0)'}],{duration:420,easing:'cubic-bezier(.2,.9,.3,1)'});
-  }
-
-  // advance slide
-  function nextSlide(){
-    if(index < total -1){ index++; showIndex(index); } else { /* loop or stay */ }
-  }
-  function prevSlide(){ if(index>0){ index--; showIndex(index); } }
-
-  // Curtain open (first click)
-  curtain.addEventListener('click',openCurtain,{once:true});
-  function openCurtain(e){
-    curtain.classList.add('open');
-    // slight delay then zoom frame into view (scale up)
-    setTimeout(()=>{
-      frame.style.transform = 'scale(1.06)';
-      // hide spot and remove curtain from pointer events after animation
-      spot.classList.add('hidden');
-      setTimeout(()=>{ curtain.style.display='none'; frame.style.transform='scale(1)'; opened=true; },900);
-    },200);
-  }
-
-  // universal click to advance (but prevent clicks on links or buttons)
-  document.addEventListener('click', (ev)=>{
-    if(!opened) return; // first click handled by curtain
-    const t = ev.target;
-    if(t.tagName==='A' || t.tagName==='BUTTON' || t.closest('button')) return; // don't steal button actions
-    nextSlide();
-  });
-
-  // nav buttons
-  document.getElementById('next').addEventListener('click',(e)=>{ e.stopPropagation(); nextSlide(); });
-  document.getElementById('prev').addEventListener('click',(e)=>{ e.stopPropagation(); prevSlide(); });
-
-  // keyboard
-  document.addEventListener('keydown',(e)=>{
-    if(!opened && (e.key===' ' || e.key==='Enter')){ openCurtain(); }
-    if(!opened) return;
-    if(e.key==='ArrowRight' || e.key===' '){ nextSlide(); }
-    if(e.key==='ArrowLeft'){ prevSlide(); }
-  });
-
-  // demo audio play (empty src — replace with url or file)
-  document.getElementById('playDemo').addEventListener('click', async (ev)=>{
-    ev.stopPropagation();
-    const audio = document.getElementById('demoAudio');
-    if(!audio.src){ alert('Chèn URL audio vào thuộc tính src của #demoAudio trong mã nguồn để bật demo.'); return; }
-    if(audio.paused) { await audio.play(); ev.target.textContent='⏸ Pause'; } else { audio.pause(); ev.target.textContent='▶️ Play demo'; }
-  });
-
-  // initial
-  showIndex(0);
-
-  // Helpful: allow direct linking to a slide via ?s=idx
-  const url = new URL(location.href);
-  const s = url.searchParams.get('s');
-  if(s){ const si = parseInt(s,10); if(!isNaN(si) && si>=0 && si<total){ index=si; showIndex(index); curtain.style.display='none'; opened=true; }}
-
-  // Accessibility: focus controls
-  document.getElementById('next').style.opacity = 0.0001; // nearly invisible but usable (remove if you want visible arrows)
-  document.getElementById('prev').style.opacity = 0.0001;
-</script>
+    // Chuyển bằng phím
+    document.addEventListener("keydown", (e) => {
+      if (!opened) return;
+      if (e.key === "ArrowRight" || e.key === " ") {
+        slides[current].classList.remove("active");
+        current = (current + 1) % slides.length;
+        slides[current].classList.add("active");
+      }
+      if (e.key === "ArrowLeft") {
+        slides[current].classList.remove("active");
+        current = (current - 1 + slides.length) % slides.length;
+        slides[current].classList.add("active");
+      }
+    });
+  </script>
 </body>
 </html>
