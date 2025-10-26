@@ -55,3 +55,83 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 /* --- Zoom when curtain opens --- */
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
+/* --- Slide bố cục hai bên (text-left / image-right) --- */
+.slide .cols {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  width: 85%;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: white; /* toàn bộ chữ trong slide này là trắng */
+  text-align: left;
+}
+
+.slide .left {
+  flex: 1.1;
+}
+
+.slide .right {
+  flex: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide h2 {
+  font-size: 2.8rem;
+  color: white;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.slide ul {
+  list-style-type: "🎸 ";
+  font-size: 1.25rem;
+  line-height: 1.8;
+  padding-left: 0;
+}
+
+.slide li {
+  margin-bottom: 10px;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.slide .right img {
+  width: 75%;
+  max-width: 400px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+/* --- Artist section (slide Nghệ sĩ & Bài hát) --- */
+.artist {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+.artist .art {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+.artist .meta .name {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.artist .meta .info {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* --- Fade-in fix cho slide chữ trắng --- */
+.slide ul, .slide p, .slide h2 {
+  transition: opacity 0.8s ease;
+}
