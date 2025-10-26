@@ -4,243 +4,147 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rock Music — Group 3</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html,body{
-      width:100%;height:100%;
-      font-family:"Poppins",sans-serif;
-      background:#f7f7f7;color:#222;
-      overflow:hidden;
-    }
 
-    /* --- Curtain --- */
-    .curtain{
-      position:fixed;inset:0;display:flex;
-      z-index:999;background:#000;
-      pointer-events:auto;
-    }
-    .curtain-part{
-      flex:1;
-      background:url("https://i.postimg.cc/JhQGf2hp/red-curtain.jpg") center/cover no-repeat;
-      transition:transform 1.6s cubic-bezier(.22,.9,.26,1);
-    }
-    .curtain.open .left{transform:translateX(-100%);}
-    .curtain.open .right{transform:translateX(100%);}
-
-    /* --- Slides --- */
-    .slides{position:relative;width:100vw;height:100vh;}
-    .slide{
-      position:absolute;inset:0;
-      width:100%;height:100%;
-      display:none;justify-content:center;align-items:center;
-      flex-direction:column;text-align:center;
-      background-size:cover;background-position:center;
-      opacity:0;transition:opacity 1s ease;
-    }
-    .slide.active{display:flex;opacity:1;}
-
-    h1{font-size:4rem;text-transform:uppercase;letter-spacing:3px;}
-    p{font-size:1.4rem;margin-top:10px;max-width:900px;}
-
-    /* --- Members --- */
-    .slide.members {
-      color: white;
-    }
-    .contributors{
-      display:flex;justify-content:center;align-items:center;
-      flex-wrap:wrap;gap:60px;margin-top:40px;
-    }
-    .role{
-      display:flex;flex-direction:column;align-items:center;width:220px;
-    }
-    .role img{
-      width:120px;height:120px;object-fit:cover;border-radius:0%;margin-bottom:12px;
-    }
-    .role h3{font-size:1.3rem;margin-bottom:6px;}
-    .role p{font-size:1.1rem;}
-
-    /* --- Zoom when curtain opens --- */
-    .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
-    .zoom-enter.done{transform:scale(1);}
-  </style>
+  <!-- Link external stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Curtain -->
-<div class="curtain" id="curtain">
-  <div class="curtain-part left" style="background:url('https://i.postimg.cc/Y2W5Xms4/curtain.png') left center/cover no-repeat;"></div>
-  <div class="curtain-part right" style="background:url('https://i.postimg.cc/Y2W5Xms4/curtain.png') right center/cover no-repeat;"></div>
-</div>
-
-<!-- Slides -->
-<div class="slides zoom-enter" id="slides">
-  <!-- Slide 1: ROCK MUSIC -->
-  <section class="slide active" style="background:url('https://i.postimg.cc/X78Tbvvz/background-1.png') center/cover no-repeat;color:white;">
-    <h1>ROCK MUSIC</h1>
-    <p>GROUP 3 — MUSIC GENRE PRESENTATION</p>
-  </section>
-
-  <!-- Slide 2: THÀNH VIÊN NHÓM -->
-  <section class="slide members" style="background:url('https://i.postimg.cc/q711bmp6/no-2.jpg') center center/cover no-repeat;">
-    <h1>THÀNH VIÊN NHÓM</h1>
-    <div class="contributors">
-      <div class="role">
-        <img src="https://i.postimg.cc/W45ZLCFZ/web-developer-notheme.png" alt="Web Developer">
-        <h3>Web Developer</h3>
-        <p>Nguyên Bảo</p>
-      </div>
-      <div class="role">
-        <img src="https://i.postimg.cc/s2TWdqQS/informant-notheme.png" alt="Informant">
-        <h3>Informant</h3>
-        <p>Quỳnh Trang</p>
-      </div>
-      <div class="role">
-        <img src="https://i.postimg.cc/1zvFh2nq/scriptwriter-notheme.png" alt="Scriptwriter">
-        <h3>Scriptwriter</h3>
-        <p>Cát Khánh, Như Ý, Anh Đức</p>
-      </div>
-      <div class="role">
-        <img src="https://i.postimg.cc/pdsjb4hK/Performer-notheme.png" alt="Performer">
-        <h3>Performer</h3>
-        <p>Hải Đăng</p>
-      </div>
-    </div>
-  </section>
-
-      <!-- Slide 3: Nguồn gốc & Lịch sử (2p) -->
-      <section class="slide s-2" data-index="2">
-        <h2>Nguồn gốc & Lịch sử</h2>
-        <div class="cols">
-          <div class="left">
-            <ul>
-              <li>Xuất hiện: cuối thập niên 1940–1950 ở Anh & Mỹ (tiền thân: Rock 'n' Roll, Blues, Country).</li>
-              <li>Social: bối cảnh công nghiệp hóa, thanh niên phản kháng, văn hóa trẻ nổi loạn.</li>
-              <li>Người tiên phong: Elvis Presley (rock 'n' roll), Chuck Berry, Little Richard; các ban đầu kỳ: The Beatles, The Rolling Stones (thập kỷ sau).</li>
-            </ul>
-          </div>
-          <div class="right">
-            <!-- Replace src with artist/history image -->
-            <img src="https://placehold.co/400x240?text=History+Image" alt="history" style="width:100%;border-radius:8px;object-fit:cover">
-            <p class="hint">2 phút</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 4: Đặc điểm chính (2p) -->
-      <section class="slide s-3" data-index="3">
-        <h2>Đặc điểm chính</h2>
-        <div class="cols">
-          <div class="left">
-            <ul>
-              <li>Nhạc cụ điển hình: Electric guitar (lead & rhythm), bass, drums, đôi khi piano hoặc keyboard.</li>
-              <li>Âm thanh: riff guitar mạnh, distortion, nhịp đánh dồn dập; vocal đầy năng lượng.</li>
-              <li>Chủ đề lời: tình yêu, phản kháng, tự do, đời sống xã hội.</li>
-            </ul>
-          </div>
-          <div class="right">
-            <img src="https://placehold.co/400x240?text=Guitar+%26+Drums" alt="instruments" style="width:100%;border-radius:8px;object-fit:cover">
-            <p class="hint">2 phút</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 5: Nghệ sĩ & Bài hát (2p) -->
-      <section class="slide s-4" data-index="4">
-        <h2>Nghệ sĩ & Bài hát nổi bật</h2>
-        <div style="display:flex;gap:12px;flex-direction:column;width:100%">
-          <!-- Artist items: replace images and names -->
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+1" alt="artist 1">
-            <div class="meta"><div class="name">The Rolling Stones</div><div class="info">(Anh) — Ví dụ bài: "Satisfaction"</div></div>
-          </div>
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+2" alt="artist 2">
-            <div class="meta"><div class="name">Led Zeppelin</div><div class="info">(Anh) — Ví dụ bài: "Stairway to Heaven"</div></div>
-          </div>
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+3" alt="artist 3">
-            <div class="meta"><div class="name">Linkin Park</div><div class="info">(Mỹ) — Ví dụ bài: "In the End"</div></div>
-          </div>
-          <div class="artist">
-            <img class="art" src="https://placehold.co/120x120?text=Artist+4" alt="artist 4">
-            <div class="meta"><div class="name">Nghệ sĩ VN (vd: Bức Tường)</div><div class="info">Ví dụ bài: "Tâm hồn của đá"</div></div>
-          </div>
-          <p class="hint">2 phút — show 5 bài đại diện bằng danh sách khi thuyết trình</p>
-        </div>
-      </section>
-
-      <!-- Slide 6: Tầm ảnh hưởng & Modern trends (1.5p) -->
-      <section class="slide s-5" data-index="5">
-        <h2>Tầm ảnh hưởng & Xu hướng hiện nay</h2>
-        <div class="cols">
-          <div class="left">
-            <ul>
-              <li>Ảnh hưởng: thời trang (áo da, boots), hành vi (văn hóa chống đối), ngôn ngữ âm nhạc trên mạng.</li>
-              <li>Modern trends: indie rock, alternative blends, electronic production (rock + điện tử), livestream & festival.</li>
-            </ul>
-          </div>
-          <div class="right">
-            <img src="https://placehold.co/400x240?text=Fashion+%26+Festivals" alt="impact" style="width:100%;border-radius:8px;object-fit:cover">
-            <p class="hint">1.5 phút</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 7: Biểu diễn (mini) -->
-      <section class="slide s-6" data-index="6">
-        <h2>Chuyên mục: Biểu diễn nhỏ</h2>
-        <p style="color:var(--muted)">(Chèn đoạn audio demo ~15–30s hoặc video ngắn — khi trình chiếu, click để play)</p>
-        <div style="display:flex;gap:12px;margin-top:8px;align-items:center">
-          <button id="playDemo">▶️ Play demo (ví dụ: riff ngắn)</button>
-          <audio id="demoAudio" src="" preload="none"></audio>
-        </div>
-      </section>
-
-      <!-- Slide 8: Ending -->
-      <section class="slide s-7" data-index="7">
-        <h2>Thank you for listening</h2>
-        <p style="color:var(--muted)">Kết thúc — thông tin liên hệ / tên thành viên / cảm ơn giáo viên và lớp.</p>
-      </section>
-
-    </div>
-  </div>
+  <!-- Curtain -->
+  <div class="curtain" id="curtain">
+    <div class="curtain-part left" style="background:url('https://i.postimg.cc/Y2W5Xms4/curtain.png') left center/cover no-repeat;"></div>
+    <div class="curtain-part right" style="background:url('https://i.postimg.cc/Y2W5Xms4/curtain.png') right center/cover no-repeat;"></div>
   </div>
 
-  <script>
-    const curtain = document.getElementById("curtain");
-    const slides = document.querySelectorAll(".slide");
-    const slidesContainer = document.getElementById("slides");
-    let opened = false;
-    let current = 0;
+  <!-- Slides -->
+  <div class="slides zoom-enter" id="slides">
+    <!-- Slide 1: ROCK MUSIC -->
+    <section class="slide active" style="background:url('https://i.postimg.cc/X78Tbvvz/background-1.png') center/cover no-repeat;color:white;">
+      <h1>ROCK MUSIC</h1>
+      <p>GROUP 3 — MUSIC GENRE PRESENTATION</p>
+    </section>
 
-    // Mở rèm khi click lần đầu
-    window.addEventListener("click", () => {
-      if (!opened) {
-        curtain.classList.add("open");
-        slidesContainer.classList.add("done");
-        setTimeout(() => { curtain.style.display = "none"; }, 1600);
-        opened = true;
-      } else {
-        // Hiệu ứng fade nhẹ khi chuyển slide
-        slides[current].classList.remove("active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("active");
-      }
-    });
+    <!-- Slide 2: THÀNH VIÊN NHÓM -->
+    <section class="slide members" style="background:url('https://i.postimg.cc/q711bmp6/no-2.jpg') center center/cover no-repeat;">
+      <h1>THÀNH VIÊN NHÓM</h1>
+      <div class="contributors">
+        <div class="role">
+          <img src="https://i.postimg.cc/W45ZLCFZ/web-developer-notheme.png" alt="Web Developer">
+          <h3>Web Developer</h3>
+          <p>Nguyên Bảo</p>
+        </div>
+        <div class="role">
+          <img src="https://i.postimg.cc/s2TWdqQS/informant-notheme.png" alt="Informant">
+          <h3>Informant</h3>
+          <p>Quỳnh Trang</p>
+        </div>
+        <div class="role">
+          <img src="https://i.postimg.cc/1zvFh2nq/scriptwriter-notheme.png" alt="Scriptwriter">
+          <h3>Scriptwriter</h3>
+          <p>Cát Khánh, Như Ý, Anh Đức</p>
+        </div>
+        <div class="role">
+          <img src="https://i.postimg.cc/pdsjb4hK/Performer-notheme.png" alt="Performer">
+          <h3>Performer</h3>
+          <p>Hải Đăng</p>
+        </div>
+      </div>
+    </section>
 
-    // Chuyển bằng phím
-    document.addEventListener("keydown", (e) => {
-      if (!opened) return;
-      if (e.key === "ArrowRight" || e.key === " ") {
-        slides[current].classList.remove("active");
-        current = (current + 1) % slides.length;
-        slides[current].classList.add("active");
-      }
-      if (e.key === "ArrowLeft") {
-        slides[current].classList.remove("active");
-        current = (current - 1 + slides.length) % slides.length;
-        slides[current].classList.add("active");
-      }
-    });
-  </script>
+    <!-- Slide 3: Nguồn gốc & Lịch sử -->
+    <section class="slide s-2" data-index="2">
+      <h2>Nguồn gốc & Lịch sử</h2>
+      <div class="cols">
+        <div class="left">
+          <ul>
+            <li>Xuất hiện: cuối thập niên 1940–1950 ở Anh & Mỹ (tiền thân: Rock 'n' Roll, Blues, Country).</li>
+            <li>Social: bối cảnh công nghiệp hóa, thanh niên phản kháng, văn hóa trẻ nổi loạn.</li>
+            <li>Người tiên phong: Elvis Presley, Chuck Berry, Little Richard; The Beatles, The Rolling Stones.</li>
+          </ul>
+        </div>
+        <div class="right">
+          <img src="https://placehold.co/400x240?text=History+Image" alt="history" style="width:100%;border-radius:8px;object-fit:cover">
+          <p class="hint">2 phút</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Đặc điểm chính -->
+    <section class="slide s-3" data-index="3">
+      <h2>Đặc điểm chính</h2>
+      <div class="cols">
+        <div class="left">
+          <ul>
+            <li>Nhạc cụ: Guitar điện, bass, trống, đôi khi piano/keyboard.</li>
+            <li>Âm thanh: riff mạnh, distortion, nhịp dồn dập, vocal năng lượng.</li>
+            <li>Chủ đề: tình yêu, phản kháng, tự do, xã hội.</li>
+          </ul>
+        </div>
+        <div class="right">
+          <img src="https://placehold.co/400x240?text=Guitar+%26+Drums" alt="instruments" style="width:100%;border-radius:8px;object-fit:cover">
+          <p class="hint">2 phút</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 5: Nghệ sĩ & Bài hát -->
+    <section class="slide s-4" data-index="4">
+      <h2>Nghệ sĩ & Bài hát nổi bật</h2>
+      <div style="display:flex;gap:12px;flex-direction:column;width:100%">
+        <div class="artist">
+          <img class="art" src="https://placehold.co/120x120?text=Artist+1" alt="artist 1">
+          <div class="meta"><div class="name">The Rolling Stones</div><div class="info">(Anh) — “Satisfaction”</div></div>
+        </div>
+        <div class="artist">
+          <img class="art" src="https://placehold.co/120x120?text=Artist+2" alt="artist 2">
+          <div class="meta"><div class="name">Led Zeppelin</div><div class="info">(Anh) — “Stairway to Heaven”</div></div>
+        </div>
+        <div class="artist">
+          <img class="art" src="https://placehold.co/120x120?text=Artist+3" alt="artist 3">
+          <div class="meta"><div class="name">Linkin Park</div><div class="info">(Mỹ) — “In the End”</div></div>
+        </div>
+        <div class="artist">
+          <img class="art" src="https://placehold.co/120x120?text=Artist+4" alt="artist 4">
+          <div class="meta"><div class="name">Bức Tường</div><div class="info">“Tâm hồn của đá”</div></div>
+        </div>
+        <p class="hint">2 phút</p>
+      </div>
+    </section>
+
+    <!-- Slide 6: Tầm ảnh hưởng -->
+    <section class="slide s-5" data-index="5">
+      <h2>Tầm ảnh hưởng & Xu hướng hiện nay</h2>
+      <div class="cols">
+        <div class="left">
+          <ul>
+            <li>Ảnh hưởng: thời trang, hành vi, ngôn ngữ âm nhạc.</li>
+            <li>Xu hướng: indie rock, alternative, rock điện tử, festival.</li>
+          </ul>
+        </div>
+        <div class="right">
+          <img src="https://placehold.co/400x240?text=Fashion+%26+Festivals" alt="impact" style="width:100%;border-radius:8px;object-fit:cover">
+          <p class="hint">1.5 phút</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Biểu diễn -->
+    <section class="slide s-6" data-index="6">
+      <h2>Chuyên mục: Biểu diễn nhỏ</h2>
+      <p>(Chèn đoạn audio hoặc video demo)</p>
+      <div style="display:flex;gap:12px;margin-top:8px;align-items:center">
+        <button id="playDemo">▶️ Play demo</button>
+        <audio id="demoAudio" src="" preload="none"></audio>
+      </div>
+    </section>
+
+    <!-- Slide 8: Ending -->
+    <section class="slide s-7" data-index="7">
+      <h2>Thank you for listening</h2>
+      <p>Kết thúc — cảm ơn giáo viên và lớp.</p>
+    </section>
+  </div>
+
+  <!-- Link external script -->
+  <script src="script.js"></script>
 </body>
 </html>
