@@ -80,46 +80,49 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
 
-/* --- Common heading style for all slides --- */
+/* === Heading position (góc trái trên màn hình) === */
 .slide h1,
 .slide h2 {
   position: absolute;
-  top: 40px;
-  left: 60px;
-  font-size: 2.8rem;     /* to hơn */
-  font-weight: 800;      /* tô đậm hơn */
+  top: 40px;           /* cách viền trên */
+  left: 60px;          /* cách viền trái */
+  margin: 0;
+  font-size: 3.2rem;   /* to hơn rõ */
+  font-weight: 800;
   color: white;
   text-align: left;
   letter-spacing: 1px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+  z-index: 10;
 }
 
-/* --- Slide layout: text + image side by side --- */
+/* === Layout 2 cột: bên trái là text, bên phải là ảnh === */
 .cols {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 85%;
   max-width: 1300px;
-  margin: 120px auto 0 auto;  /* đẩy xuống 1 chút để tránh chạm heading */
-  gap: 60px;
+  margin: 140px auto 0 auto; /* đẩy toàn khối xuống dưới heading */
+  gap: 70px;
   color: white;
 }
 
-/* Left text area */
+/* Cột chữ bên trái */
 .cols .left {
-  flex: 1.2;
+  flex: 1.3;
   text-align: left;
 }
 
 .cols .left ul {
   list-style-type: disc;
   margin-left: 25px;
-  line-height: 2.0;        /* giãn dòng thoáng hơn */
-  font-size: 1.25rem;      /* chữ to hơn */
+  line-height: 2.1;       /* giãn dòng rộng */
+  font-size: 1.45rem;     /* to hơn */
+  font-weight: 500;
 }
 
-/* Right image area */
+/* Cột ảnh bên phải */
 .cols .right {
   flex: 1;
   display: flex;
@@ -129,8 +132,19 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 
 .cols .right img {
   width: 100%;
-  max-width: 550px;         /* ảnh lớn hơn */
-  border-radius: 0;         /* không bo tròn */
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  max-width: 600px;       /* kích thước ảnh lớn hơn */
+  border-radius: 0;       /* bỏ bo tròn */
   object-fit: cover;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+/* Viền trang trí cho heading */
+.slide h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: crimson;
+  margin-top: 10px;
+  border-radius: 2px;
 }
