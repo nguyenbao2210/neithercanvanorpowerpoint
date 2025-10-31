@@ -80,3 +80,60 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
 
+/* === Heading (góc trái, nổi bật) === */
+.slide h1,
+.slide h2 {
+  position: absolute;
+  top: 50px;         /* Cách viền trên */
+  left: 70px;        /* Cách viền trái */
+  margin: 0;
+  font-size: 3.2rem; /* To hơn rõ rệt */
+  font-weight: 800;
+  color: white;
+  text-align: left;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+}
+
+/* --- Bố cục 2 cột (text - ảnh) --- */
+.cols {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 1300px;
+  margin: 160px auto 0 auto; /* đẩy khối xuống dưới heading */
+  gap: 80px;
+  color: white;
+}
+
+/* Cột chữ bên trái */
+.cols .left {
+  flex: 1.2;
+  text-align: left;
+}
+
+.cols .left ul {
+  list-style-type: disc;
+  margin-left: 25px;
+  line-height: 2;
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+/* Cột ảnh bên phải */
+.cols .right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cols .right img {
+  width: 100%;
+  max-width: 600px;  /* Ảnh lớn vừa phải */
+  border-radius: 0;  /* Vuông góc, không bo tròn */
+  object-fit: cover;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
