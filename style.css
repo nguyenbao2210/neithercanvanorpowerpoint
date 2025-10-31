@@ -80,20 +80,17 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
 
-/* === Heading position (góc trái trên màn hình) === */
 .slide h1,
 .slide h2 {
-  position: absolute;
-  top: 40px;           /* cách viền trên */
-  left: 60px;          /* cách viền trái */
-  margin: 0;
-  font-size: 3.2rem;   /* to hơn rõ */
+  align-self: flex-start;
+  margin-left: 60px;
+  margin-top: 50px;
+  font-size: 3.2rem;
   font-weight: 800;
   color: white;
   text-align: left;
   letter-spacing: 1px;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
-  z-index: 10;
 }
 
 /* === Layout 2 cột: bên trái là text, bên phải là ảnh === */
