@@ -79,3 +79,49 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 /* --- Zoom when curtain opens --- */
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
+
+/* --- Slide layout: two columns --- */
+.cols {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  color: white;
+}
+
+/* Left side: text content */
+.cols .left {
+  flex: 1.1;
+  text-align: left;
+}
+
+.cols .left h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.cols .left ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* Right side: image */
+.cols .right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cols .right img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 0; /* bỏ bo tròn */
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  object-fit: cover;
+}
