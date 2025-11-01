@@ -88,6 +88,16 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
 
+/* Mặc định: tất cả heading đều ở giữa */
+.slide h2 {
+  position: relative;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
 /* === Heading góc trái chỉ áp dụng cho slide nội dung (3,4,6) === */
 .slide.s-2 h2,
 .slide.s-3 h2,
@@ -95,13 +105,13 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-5 h2, 
 .slide.s-7 h2, {
   position: absolute;
-  top: 50px;
-  left: 70px;
+  top: 40px;
+  left: 60px;
   margin: 0;
   font-size: 3.2rem;
   font-weight: 800;
   color: white;
-  text-align: left;
+  text-align: left !important; /* ép lại, không bị override */
   letter-spacing: 1px;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
   z-index: 10;
