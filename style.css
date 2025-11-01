@@ -142,7 +142,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-2 .cols .right img,
 .slide.s-3 .cols .right img,
 .slide.s-5 .cols .right img {
-  width: 115%;          /* ảnh phóng nhẹ vượt khung */
+  width: 110%;          /* ảnh phóng nhẹ vượt khung */
   max-width: 850px;     /* tăng giới hạn kích thước */
   border-radius: 0;     /* vuông góc, không bo tròn */
   object-fit: cover;
