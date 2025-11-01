@@ -104,17 +104,16 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-4 h2,
 .slide.s-5 h2, 
 .slide.s-7 h2, {
-  position: absolute;
-  top: 40px;
-  left: 60px;
-  margin: 0;
-  font-size: 3.2rem;
-  font-weight: 800;
-  color: white;
+  position: absolute !important;
+  top: 40px !important;
+  left: 60px !important;
+  margin: 0 !important;
+  font-size: 3.2rem !important;
+  font-weight: 800 !important;
+  color: white !important;
   text-align: left !important; /* ép lại, không bị override */
-  letter-spacing: 1px;
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
-  z-index: 10;
+  letter-spacing: 1px !important;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* --- Bố cục 2 cột (text - ảnh) chỉ cho các slide nội dung --- */
