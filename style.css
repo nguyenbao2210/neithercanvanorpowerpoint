@@ -76,6 +76,13 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   color: white;
 }
 
+.slide.s-8 {
+  color: white;
+}
+
+.slide.s-9 {
+  color: white;
+}
 /* --- Zoom when curtain opens --- */
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
 .zoom-enter.done{transform:scale(1);}
