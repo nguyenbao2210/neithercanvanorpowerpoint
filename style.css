@@ -98,7 +98,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* === Heading góc trái chỉ áp dụng cho slide nội dung (3,4,6) === */
+/* === Heading góc trái chỉ áp dụng cho slide nội dung (2,3,4,5,7) === */
 .slide.s-2 h2,
 .slide.s-3 h2,
 .slide.s-4 h2,
@@ -120,7 +120,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 /* --- Bố cục 2 cột (text - ảnh) chỉ cho các slide nội dung --- */
 .slide.s-2 .cols,
 .slide.s-3 .cols,
-.slide.s-5 .cols {
+.slide.s-7 .cols {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -134,14 +134,14 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 /* Cột chữ bên trái */
 .slide.s-2 .cols .left,
 .slide.s-3 .cols .left,
-.slide.s-5 .cols .left {
+.slide.s-7 .cols .left {
   flex: 1.6;
   text-align: left;
 }
 
 .slide.s-2 .cols .left ul,
 .slide.s-3 .cols .left ul,
-.slide.s-5 .cols .left ul {
+.slide.s-7 .cols .left ul {
   list-style-type: disc;
   margin-left: 25px;
   line-height: 2;
@@ -152,7 +152,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 /* === Ảnh to hơn cho các slide nội dung (3, 4, 6) === */
 .slide.s-2 .cols .right,
 .slide.s-3 .cols .right,
-.slide.s-5 .cols .right {
+.slide.s-7 .cols .right {
   flex: 1.2; /* cột ảnh rộng hơn (60% màn hình) */
   display: flex;
   justify-content: center;
@@ -161,7 +161,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 
 .slide.s-2 .cols .right img,
 .slide.s-3 .cols .right img,
-.slide.s-5 .cols .right img {
+.slide.s-7 .cols .right img {
   width: 105%;          /* ảnh phóng nhẹ vượt khung */
   max-width: 850px;     /* tăng giới hạn kích thước */
   border-radius: 0;     /* vuông góc, không bo tròn */
