@@ -133,7 +133,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-2 .cols .right,
 .slide.s-3 .cols .right,
 .slide.s-5 .cols .right {
-  flex: 1.6; /* cột ảnh rộng hơn (60% màn hình) */
+  flex: 1.4; /* cột ảnh rộng hơn (60% màn hình) */
   display: flex;
   justify-content: center;
   align-items: center;
