@@ -198,40 +198,45 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   line-height: 1.6;
 }
 
-/* === Songs layout === */
-.center-heading {
+/* === Songs layout (FORCE layout for slide 6) === */
+.slide.s-6 .center-heading {
   text-align: center;
   font-size: 3rem;
   margin-top: 40px;
   color: white;
 }
 
-.songs-layout {
-  display: grid;
+.slide.s-6 .songs-layout {
+  display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, auto);
-  gap: 40px 70px;
+  gap: 60px 100px;
   justify-items: center;
-  align-items: center;
+  align-items: start;
   width: 90%;
   margin: 100px auto;
 }
 
-.song {
+.slide.s-6 .song {
   text-align: center;
   color: white;
 }
 
-.song img {
-  width: 220px;
-  height: 220px;
+.slide.s-6 .song img {
+  width: 230px;
+  height: 230px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease;
 }
 
-.song p {
+.slide.s-6 .song:hover img {
+  transform: scale(1.08);
+}
+
+.slide.s-6 .song p {
   margin-top: 10px;
-  font-size: 1.1rem;
-  line-height: 1.4;
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
