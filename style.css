@@ -103,7 +103,7 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-3 h2,
 .slide.s-4 h2,
 .slide.s-5 h2, 
-.slide.s-7 h2, {
+.slide.s-7 h2 {
   position: absolute !important;
   top: 40px !important;
   left: 60px !important;
