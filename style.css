@@ -129,11 +129,11 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   font-weight: 500;
 }
 
-/* Cột ảnh bên phải */
+/* === Ảnh to hơn cho các slide nội dung (3, 4, 6) === */
 .slide.s-2 .cols .right,
 .slide.s-3 .cols .right,
 .slide.s-5 .cols .right {
-  flex: 1;
+  flex: 1.6; /* cột ảnh rộng hơn (60% màn hình) */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,9 +142,11 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-2 .cols .right img,
 .slide.s-3 .cols .right img,
 .slide.s-5 .cols .right img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 0;
+  width: 115%;          /* ảnh phóng nhẹ vượt khung */
+  max-width: 850px;     /* tăng giới hạn kích thước */
+  border-radius: 0;     /* vuông góc, không bo tròn */
   object-fit: cover;
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  transform: scale(1.05); /* zoom nhẹ tạo cảm giác nổi */
 }
+
