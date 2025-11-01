@@ -52,6 +52,37 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .role h3{font-size:1.3rem;margin-bottom:6px;}
 .role p{font-size:1.1rem;}
 
+.slide.s-2 {
+  color: white;
+}
+
+.slide.s-3 {
+  color: white;
+}
+
+.slide.s-4 {
+  color: white;
+}
+
+.slide.s-5 {
+  color: white;
+}
+
+.slide.s-6 {
+  color: white;
+}
+
+.slide.s-7 {
+  color: white;
+}
+
+.slide.s-8 {
+  color: white;
+}
+
+.slide.s-9 {
+  color: white;
+}
 
 /* --- Zoom when curtain opens --- */
 .zoom-enter{transform:scale(1.15);transition:transform 1.6s ease-in-out;}
