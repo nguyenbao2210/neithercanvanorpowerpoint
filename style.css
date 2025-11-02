@@ -184,14 +184,6 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   color: white;
 }
 
-.artist-card img {
-  width: 230px;
-  height: 230px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-}
-
 .artist-card p {
   margin-top: 10px;
   font-size: 1.2rem;
@@ -236,22 +228,27 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   transform: translateX(-80px);
 }
 
-.song img {
-  width: 240px;
-  height: auto; /* giữ tỷ lệ gốc của ảnh */
-  aspect-ratio: auto; /* cho trình duyệt tự căn */
-  border-radius: 8px;
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
-  object-fit: contain; /* hiển thị toàn bộ ảnh, không bị cắt */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.song:hover img {
-  transform: scale(1.08);
-  box-shadow: 0 0 35px rgba(255,255,255,0.5);
-}
-
 .song p {
   margin-top: 12px;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+/* === ẢNH CHUNG CHO ARTISTS + SONGS === */
+.artist-card img,
+.song img {
+  width: 240px;          /* chiều ngang cố định */
+  height: auto;          /* giữ tỉ lệ gốc */
+  max-height: 260px;     /* không để ảnh nào quá cao */
+  aspect-ratio: auto;
+  object-fit: contain;   /* hiển thị nguyên vẹn ảnh */
+  border-radius: 8px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artist-card img:hover,
+.song img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 35px rgba(255,255,255,0.5);
 }
