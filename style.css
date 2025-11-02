@@ -238,10 +238,11 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 
 .song img {
   width: 240px;
-  height: 240px;
-  object-fit: cover;
+  height: auto; /* giữ tỷ lệ gốc của ảnh */
+  aspect-ratio: auto; /* cho trình duyệt tự căn */
   border-radius: 8px;
   box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  object-fit: contain; /* hiển thị toàn bộ ảnh, không bị cắt */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .song:hover img {
