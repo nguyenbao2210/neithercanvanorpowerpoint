@@ -198,12 +198,22 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   line-height: 1.6;
 }
 
-/* === SONGS LAYOUT — 3 TRÊN 2 DƯỚI SO LE === */
+/* === SONGS LAYOUT — FIXED HEADING + 3-2 SO LE CHUẨN === */
+.slide.s-6 h2.center-heading {
+  position: relative !important;
+  top: 20px !important; /* heading thấp xuống */
+  margin-bottom: 40px !important;
+  text-align: center !important;
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  color: white !important;
+}
+
 .songs-layout {
   position: relative;
   width: 90%;
-  max-width: 1400px;
-  margin: 120px auto 0 auto;
+  max-width: 1300px;
+  margin: 60px auto 0 auto; /* giảm khoảng cách trên */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -218,11 +228,22 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   position: relative;
 }
 
+/* 3 bài trên */
 .song:nth-child(1) { order: 1; }
 .song:nth-child(2) { order: 2; }
 .song:nth-child(3) { order: 3; }
-.song:nth-child(4) { order: 4; margin-top: 100px; transform: translateX(130px); }
-.song:nth-child(5) { order: 5; margin-top: 100px; transform: translateX(-130px); }
+
+/* 2 bài dưới (nằm giữa 3 bài trên) */
+.song:nth-child(4) {
+  order: 4;
+  margin-top: 80px;
+  transform: translateX(150px);
+}
+.song:nth-child(5) {
+  order: 5;
+  margin-top: 80px;
+  transform: translateX(-150px);
+}
 
 .song img {
   width: 240px;
