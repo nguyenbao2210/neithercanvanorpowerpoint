@@ -198,22 +198,12 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   line-height: 1.6;
 }
 
-/* === SONGS LAYOUT — FIXED HEADING + 3-2 SO LE CHUẨN === */
-.slide.s-6 h2.center-heading {
-  position: relative !important;
-  top: 20px !important; /* heading thấp xuống */
-  margin-bottom: 40px !important;
-  text-align: center !important;
-  font-size: 3rem !important;
-  font-weight: 700 !important;
-  color: white !important;
-}
-
+/* === SONGS LAYOUT — 3 TRÊN 2 DƯỚI SO LE === */
 .songs-layout {
   position: relative;
   width: 90%;
-  max-width: 1300px;
-  margin: 60px auto 0 auto; /* giảm khoảng cách trên */
+  max-width: 1400px;
+  margin: 80px auto 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -228,21 +218,22 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   position: relative;
 }
 
-/* 3 bài trên */
-.song:nth-child(1) { order: 1; }
-.song:nth-child(2) { order: 2; }
-.song:nth-child(3) { order: 3; }
+/* Căn 3 ảnh trên đều hàng */
+.song:nth-child(1),
+.song:nth-child(2),
+.song:nth-child(3) {
+  margin-top: 0;
+  transform: none;
+}
 
-/* 2 bài dưới (nằm giữa 3 bài trên) */
+/* Hai ảnh dưới lệch nhẹ vào giữa */
 .song:nth-child(4) {
-  order: 4;
-  margin-top: 80px;
-  transform: translateX(150px);
+  margin-top: 100px;
+  transform: translateX(80px);
 }
 .song:nth-child(5) {
-  order: 5;
-  margin-top: 80px;
-  transform: translateX(-150px);
+  margin-top: 100px;
+  transform: translateX(-80px);
 }
 
 .song img {
@@ -253,7 +244,6 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   box-shadow: 0 0 25px rgba(0,0,0,0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .song:hover img {
   transform: scale(1.08);
   box-shadow: 0 0 35px rgba(255,255,255,0.5);
