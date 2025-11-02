@@ -198,45 +198,46 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   line-height: 1.6;
 }
 
-/* === Songs layout (FORCE layout for slide 6) === */
-.slide.s-6 .center-heading {
-  text-align: center;
-  font-size: 3rem;
-  margin-top: 40px;
-  color: white;
-}
-
-.slide.s-6 .songs-layout {
+/* === FORCE LAYOUT cho "Five Songs for the Playlist" === */
+.songs-layout {
   display: grid !important;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 60px 100px;
-  justify-items: center;
-  align-items: start;
-  width: 90%;
-  margin: 100px auto;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-template-rows: repeat(2, auto) !important;
+  gap: 60px 100px !important;
+  justify-items: center !important;
+  align-items: start !important;
+  width: 90% !important;
+  margin: 100px auto !important;
 }
 
-.slide.s-6 .song {
-  text-align: center;
-  color: white;
+.song {
+  text-align: center !important;
+  color: white !important;
 }
 
-.slide.s-6 .song img {
-  width: 230px;
-  height: 230px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease;
+.song img {
+  width: 240px !important;
+  height: 240px !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-.slide.s-6 .song:hover img {
-  transform: scale(1.08);
+.song:hover img {
+  transform: scale(1.08) !important;
+  box-shadow: 0 0 35px rgba(255,255,255,0.5) !important;
 }
 
-.slide.s-6 .song p {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  line-height: 1.6;
+.song p {
+  margin-top: 12px !important;
+  font-size: 1.25rem !important;
+  line-height: 1.5 !important;
+}
+
+.center-heading {
+  text-align: center !important;
+  font-size: 3rem !important;
+  margin-top: 40px !important;
+  color: white !important;
 }
