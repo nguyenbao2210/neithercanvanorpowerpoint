@@ -194,57 +194,39 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .slide.s-6 {
   display: flex !important;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
 }
 
 .slide.s-6 .center-heading {
-  position: relative;
-  top: 40px;
   text-align: center;
   font-size: 3rem;
   font-weight: 800;
-  margin-bottom: 40px;
+  margin-bottom: 70px;
   color: white;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Layout 3 trên 2 dưới lệch */
+/* --- 5 bài hát thẳng hàng giữa màn hình --- */
 .slide.s-6 .songs-layout {
-  position: relative;
-  width: 85%;
-  max-width: 1400px;
-  margin-top: 100px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 70px 100px;
-  justify-items: center;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  flex-wrap: nowrap;          /* không xuống dòng */
+  gap: 80px;                  /* khoảng cách đều giữa ảnh */
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
-/* Cụ thể từng vị trí */
-.slide.s-6 .song:nth-child(1),
-.slide.s-6 .song:nth-child(2),
-.slide.s-6 .song:nth-child(3) {
-  grid-row: 1;
+.slide.s-6 .song {
+  text-align: center;
+  color: white;
+  width: 230px;
 }
 
-.slide.s-6 .song:nth-child(4) {
-  grid-row: 2;
-  grid-column: 2;
-  transform: translateY(-20px);
-}
-
-.slide.s-6 .song:nth-child(5) {
-  grid-row: 2;
-  grid-column: 3;
-  transform: translateY(-20px);
-}
-
-/* Ảnh bài hát */
 .slide.s-6 .song img {
   width: 230px;
   height: auto;
@@ -260,11 +242,10 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   box-shadow: 0 0 35px rgba(255,255,255,0.5);
 }
 
-/* Text phần tên bài hát */
 .slide.s-6 .song p {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  line-height: 1.4;
+  margin-top: 12px;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
 /* === ẢNH CHUNG CHO ARTISTS + SONGS (đồng bộ tỉ lệ ảnh) === */
