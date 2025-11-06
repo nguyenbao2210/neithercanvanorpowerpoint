@@ -53,11 +53,11 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .role p{font-size:1.1rem;}
 
 /* === MAIN FEATURES (v2) — with animation & larger text === */
-.slide.s-4 {
+.slide.s-3 {
   color: white;
 }
 
-.slide.s-4 h2 {
+.slide.s-3 h2 {
   position: absolute;
   top: 40px;
   left: 60px;
