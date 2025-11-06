@@ -52,6 +52,61 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
 .role h3{font-size:1.3rem;margin-bottom:6px;}
 .role p{font-size:1.1rem;}
 
+/* === MAIN FEATURES LAYOUT === */
+.slide.s-3 {
+  color: white;
+}
+
+.slide.s-3 h2 {
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  font-size: 3.2rem;
+  font-weight: 800;
+  text-align: left;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.features-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1400px;
+  margin: 160px auto 0 auto;
+  gap: 40px;
+}
+
+.feature-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.feature-box h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid crimson;
+  padding-bottom: 6px;
+}
+
+.feature-box ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  line-height: 1.8;
+  font-size: 1.2rem;
+}
+
 .slide.s-2 {
   color: white;
 }
