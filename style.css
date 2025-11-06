@@ -113,32 +113,6 @@ p{font-size:1.4rem;margin-top:10px;max-width:900px;}
   margin-left: 25px;
 }
 
-/* === Animation xuất hiện lần lượt === */
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.delay-1 {
-  animation-delay: 0.3s;
-}
-.delay-2 {
-  animation-delay: 0.8s;
-}
-.delay-3 {
-  animation-delay: 1.3s;
-}
-
 .slide.s-2 {
   color: white;
 }
