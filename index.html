@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rock Music — Group 3</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Music Presentation</title>
 
   <!-- Link external stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Force browser to always load newest CSS/JS -->
+  <script>
+    const bust = Date.now();
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+        link.href = link.href.split('?')[0] + '?v=' + bust;
+      });
+      document.querySelectorAll('script[src]').forEach(scr => {
+        scr.src = scr.src.split('?')[0] + '?v=' + bust;
+      });
+    });
+  </script>
 </head>
 <body>
   <!-- Curtain -->
