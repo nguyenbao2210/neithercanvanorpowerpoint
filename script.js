@@ -56,3 +56,19 @@ document.addEventListener("keydown", (e) => {
     revealFeatures(slides[current]);
   }
 });
+
+// === Slide animation trigger ===
+document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.slide');
+
+  // Hàm kiểm tra slide trong khung nhìn
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('slide-animate');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  slides.forEach(slide => observer.observe(slide));
+});
