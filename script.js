@@ -57,11 +57,11 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// === Slide animation trigger ===
+// === Slide animation trigger (for specific slides) ===
 document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.slide');
+  // Chỉ chọn slide s-2 và s-7
+  const slides = document.querySelectorAll('.slide.s-2, .slide.s-7');
 
-  // Hàm kiểm tra slide trong khung nhìn
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
