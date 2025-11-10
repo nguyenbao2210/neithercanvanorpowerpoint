@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
   slides.forEach(slide => observer.observe(slide));
 });
 
-// --- Slide 8: Performance Animation ---
 document.addEventListener('DOMContentLoaded', () => {
   const slide8 = document.querySelector('.slide.s-8');
   if (!slide8) return;
@@ -81,9 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const performance = slide8.querySelector('.performance-container');
   const img = performance.querySelector('.performance-img');
 
-  // Khi click ảnh → quay và hiện chữ bài hát
   img.addEventListener('click', () => {
+    // Chỉ trigger khi slide 8 đang active
+    if (!slide8.classList.contains('active')) return;
+
+    // Bắt đầu spin animation
     img.classList.add('spin-start');
+
+    // Sau 2s hiển thị chữ bài hát
     setTimeout(() => {
       performance.classList.add('performance-show-text');
     }, 2000);
