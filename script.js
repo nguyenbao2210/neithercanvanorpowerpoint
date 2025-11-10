@@ -73,34 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
   slides.forEach(slide => observer.observe(slide));
 });
 
-// === Slide 8: Performance animation ===
+// --- Slide 8: Performance Animation ---
 document.addEventListener('DOMContentLoaded', () => {
   const slide8 = document.querySelector('.slide.s-8');
-  if (!slide8) return; // <-- ngăn lỗi nếu slide8 chưa tồn tại
+  if (!slide8) return;
 
   const performance = slide8.querySelector('.performance-container');
   const img = performance.querySelector('.performance-img');
-  const title = performance.querySelector('.song-title');
 
-  // Quan sát khi slide 8 xuất hiện
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        performance.classList.add('performance-active');
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(slide8);
-
-  // Khi click ảnh => quay tròn rồi hiện chữ
+  // Khi click ảnh → quay và hiện chữ bài hát
   img.addEventListener('click', () => {
     img.classList.add('spin-start');
-    img.style.pointerEvents = 'none';
-
     setTimeout(() => {
       performance.classList.add('performance-show-text');
-      img.style.pointerEvents = 'auto';
-    }, 2500);
+    }, 2000);
   });
 });
