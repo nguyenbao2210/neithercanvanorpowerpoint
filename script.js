@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const img = performance.querySelector('.performance-img');
   const title = performance.querySelector('.song-title');
 
-  // Hiện khối performance khi slide s-8 xuất hiện
+  // Quan sát khi slide 8 xuất hiện
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -91,15 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   observer.observe(slide8);
 
-  // Khi click vào ảnh: bắt đầu quay
+  // Khi click ảnh => quay tròn rồi hiện chữ
   img.addEventListener('click', () => {
     img.classList.add('spin-start');
-    img.style.pointerEvents = 'none'; // tránh click lại khi đang quay
+    img.style.pointerEvents = 'none';
 
-    // Sau khi quay xong (3s) thì hiện tên bài hát
     setTimeout(() => {
       performance.classList.add('performance-show-text');
       img.style.pointerEvents = 'auto';
-    }, 3000);
+    }, 2500);
   });
 });
