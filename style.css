@@ -6,7 +6,6 @@ html,body{
   overflow:hidden;
 }
 
-/* --- Curtain --- */
 .curtain{
   position:fixed;inset:0;display:flex;
   z-index:999;background:#000;
