@@ -76,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // === Slide 8: Performance animation ===
 document.addEventListener('DOMContentLoaded', () => {
   const slide8 = document.querySelector('.slide.s-8');
+  if (!slide8) return; // <-- ngăn lỗi nếu slide8 chưa tồn tại
+
   const performance = slide8.querySelector('.performance-container');
   const img = performance.querySelector('.performance-img');
   const title = performance.querySelector('.song-title');
